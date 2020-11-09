@@ -26,3 +26,7 @@ Route::post('/storeproducts','ProductsController@store')->name('storeproducts');
 Route::get('/updateproducts/{id}', 'ProductsController@edit')->name('updateProducts');
 
 Route::post('/storeupdates', 'ProductsController@update')->name('storeupdates');
+
+Route::get('/get_numbs', 'ProductsController@get_phone');
+
+Route::get('/Posts', 'ProductsController@PostsWithComments');

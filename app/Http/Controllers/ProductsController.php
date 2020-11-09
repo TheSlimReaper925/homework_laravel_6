@@ -5,11 +5,15 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Products;
 use Auth;
+use App\User;
+use App\Posts;
+use App\Comments;
+
 class ProductsController extends Controller
 {
 	public function __construct()
     {
-        $this->middleware('auth');
+        // $this->middleware('auth');
     }
 	
     public function index()
@@ -38,6 +42,19 @@ class ProductsController extends Controller
             'title'=>$request->input('title'),
             'description'=>$request->input('description')
         ]);
+    }
+
+    public function get_phone()
+    {
+        return User::with(['phone'])->first()['phone'];
+    }
+
+    public function PostsWithComments()
+    {
+        // return Comments::join('posts', 'post_id', 'posts.id')->get();
+        // return Comments::withCount(['Post'])->get();
+        return Posts::withCount(['comments'])->get();
+
     }
 
 
